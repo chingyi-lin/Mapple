@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<!--http://jsbin.com/ArExAWUL/16/edit-->
+
+<html>
+<head>
+<link rel="stylesheet" href="css/bookcss.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="http://jquery.com/"></script>
+<script src="http://www.malsup.com/jquery/form/"></script>
+<script type="text/javascript" src="jquery-1.2.6.pack.js"></script>  
+<script type="text/javascript" src="jquery.form.js"></script>
+
+<!--script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>   <!for set up firebase-->
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="http://jquery.com/"></script>
+<script src="http://www.malsup.com/jquery/form/"></script>
+<script type="text/javascript" src="jquery-1.2.6.pack.js"></script>  
+<script type="text/javascript" src="jquery.form.js"></script>
+
+
+
+<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.2/firebase.js'></script>
+ <!--firebase-->
+<script src='https://cdn.firebase.com/v0/firebase.js'></script>  <!--firebase-->
+<script src="js/func.js"></script>
+
+
+<meta charset="UTF-8">
+ <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0; 
+        width: 100px;
+        background-image: url( 'http://homepage.ntu.edu.tw/~r01725043/img/IMG_2275.JPG');
+        background-size: cover;
+        background-position: left top;
+        background-repeat: no-repeat;
+        background-attachment: fixed;}
+
+
+      dialog-form {margin: 0; padding: 0 }
+      form { height: 100%; margin: 0; padding: 0 }
+      
+    </style>
+
+<title> picture book</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+    rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"rel="stylesheet">
+
+
+</head>
+<body>
+ 
+
+
+
+
+
+
+<!--div id='messagesDiv'></div>
+    <input type='text' id='nameInput' placeholder='Name'>
+    <input type='text' id='messageInput' placeholder='Message'>
+    <script>
+      var myDataRef = new Firebase('https://resplendent-fire-6545.firebaseio.com/usera');
+      $('#messageInput').keypress(function (e) {
+        if (e.keyCode == 13) {
+          var name = $('#nameInput').val();
+          var text = $('#messageInput').val();
+          myDataRef.push({name: name, text: text});
+          $('#messageInput').val('');
+        }
+      });
+      myDataRef.on('child_added', function(snapshot) {
+        var message = snapshot.val();
+        displayChatMessage(message.name, message.text);
+      });
+      function displayChatMessage(name, text) {
+        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+      };
+    </script-->
+<!--script>
+document.write('Hello world!');
+</script-->
+<div id="dialog-form" class="buttonstyle" title="新增圖鑑">
+  <p class="validateTips">請為您的圖鑑命名</p>
+ 
+  <form name=bookform>
+  <fieldset>
+    <h4>圖鑑名稱</h4>
+    
+    <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all"><!--label for="name">圖鑑名稱</label-->
+
+    <!--h4>圖片</h4>        
+    <input type="file" name="image" id="image"><label for="image"></label-->
+    <input type="hidden" name="userID" id="userID" value="admin">
+    <input type="hidden" name="bookID" id="bookID" value="1">
+
+    <h4>選擇卡片</h4>
+    
+    </fieldset>
+    <script>
+    
+    var CData = new Firebase('https://resplendent-fire-6545.firebaseio.com/');
+    var ncarddata = CData.child('admin');//change admin to sth else    
+    var bdata=ncarddata.child('cards');  
+    
+    var storetry=[];
+    var i=1;
+    bdata.on('child_added', function(snapshot) {
+      var word=snapshot.val();
+      var store=word.storename;
+      storetry[i]=store;
+      if(store){
+      $( "#dialog-form fieldset" ).append( "<input type=\"checkbox\" name=\"card"+i+"\" id=\"card"+i+"\">"+"<label for=\"card\">"+store+"</label>" );  
+      i++;
+      }
+      else{
+      $( "#dialog-form fieldset" ).append( "<input type=\"checkbox\" name=\"card"+i+"\" id=\"card"+i+"\">"+"<label for=\"card\">your cafe"+i+"</label>" );  
+      i++;
+      }
+      });    
+
+    </script>
+
+    
+  
+  </form>
+</div>
+
+
+<div class="wrapper">
+		<ul class="gallery" id="book">
+
+			<h1 class="h1style"></br></br><a href="picturebook_app.html">我的圖鑑</a></br></h1>
+      <ulbody>
+			<li><a href="cardview_app.html"><img src="img/book/100.jpg" alt="your book" height=200 px><span>All Cards</span></a></li>
+			<li><a href="cardview_app.html"><img src="img/book/book2.jpg" alt="your book" height=200 px><span>My Favorite</span></a></li>
+      </ulbody>
+		<script>
+
+    var CData = new Firebase('https://resplendent-fire-6545.firebaseio.com/');
+    var ncarddata = CData.child('admin');//change admin to sth else    
+    var bdata=ncarddata.child('book');          
+    //document.write(ncarddata);
+
+    
+    var wn=null;
+    var wid=null;
+     bdata.on('child_added', function(snapshot) {
+      var word=snapshot.val();      
+      //var w=(obj).word.toString();
+      //document.write("hhhhhhh");
+      //document.write(word.name+word.bookid);
+      wn=word.name;
+      wid=word.bookid;
+      if (wid>=3){
+      $( "#book ulbody" ).append( "<li>" +
+    "<a href=\"cardview_app.html\">" +"<img src=\"http://t3.gstatic.com/images?q=tbn:ANd9GcQxgABKdato_DOigkbRSMVWFn7M3afWlmqluFuRO92MUNuudCc1\">"
+    +"<span>"+wid+" "+ wn+"</span>" +"</a>"+"</li>" );}
+
+     /* ncarddata.on('value', function(snapshot) { 
+      //bnum = snapshot.val().booksID+1;
+      //for(var j=1; j<=1; j++){
+     $( "#book ulbody" ).append( "<li>" +
+    "<a href=\"cardview.html\">" +"<img src=\"http://t3.gstatic.com/images?q=tbn:ANd9GcQxgABKdato_DOigkbRSMVWFn7M3afWlmqluFuRO92MUNuudCc1\">"
+    +"<span>"+ wn+wid+"</span>" +"</a>"+"</li>" );
+      //}
+      //document.write(wn+wid);
+      });*/
+     });
+
+
+    //no use
+    /*ncarddata.on('value', function(snapshot) {
+    if( snapshot.val() === null) {//if didn't exist before 
+          alert('no data');      
+    } 
+    else {
+      //bdata.on('child_added', function(snapshot) {
+      //var word=snapshot.val();
+      //wn=word.name;
+      //wid=word.bookid;
+      //});
+    bnum = snapshot.val().booksID+1;
+    for(var j=1; j<=bnum; j++){
+     $( "#book ulbody" ).append( "<li>" +
+    "<a href=\"cardview.html\">" +"<img src=\"http://t3.gstatic.com/images?q=tbn:ANd9GcQxgABKdato_DOigkbRSMVWFn7M3afWlmqluFuRO92MUNuudCc1\">"
+    +"<span>"+ j+n+wid+"</span>" +"</a>"+"</li>" );
+    //document.write(bnum);
+    }
+    }
+    });*/
+     
+   
+    </script>
+
+			<li class="addnew" id="addnew1" name="addnew1"><a href="#"><img src="img/book/add.jpg" alt="your book"><span>Add a New Book</span></a></li>       
+
+			<!--li class="addnew" id="addnew2" name="addnew2"><a href="#"><img src="../picture/add.jpg" alt="your book"><span>add a new book</span></a></li-->
+			<!--li class="addnew" id="addnew3" name="addnew"><a href="#"><img src="../picture/add.jpg" alt="your book" id="addnew1" name="addnew"><span>add a new book</span></a></li>
+			<li class="addnew" id="addnew4" name="addnew"><a href="#"><img src="../picture/add.jpg" alt="your book"><span>add a new book</span></a></li-->
+		
+		</ul>
+
+
+
+
+
+<div>
+</br>
+
+<!--<button id="create-user">新增圖鑑</button>-->
+
+</div>
+
+</body>
+</html>

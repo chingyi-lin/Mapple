@@ -1,0 +1,109 @@
+body {
+	/*background: url(../../img/textures/sandpaper.png);*/
+	font-family: "Verdana", "Helvetica", "Verdana", "Geneva";
+	margin: 0;
+	padding: 0;
+	color: white;
+	
+}
+
+
+	 
+/*img. {
+max-width:550px;
+height:inherit;
+width:expression(document.body.clientWidth>550?"550px""auto");
+//若圖片大於550px就調整
+overflow:hidden;      //超過不顯示
+}*/
+
+
+
+h2 { font-size: 1.2em; margin: .6em 0; }
+div#users-contain { width: 350px; margin: 20px 0; width: 100%;}
+div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; width: 100%;}
+.ui-dialog .ui-state-error { padding: .3em; }
+.validateTips { border: 1px solid transparent; padding: 0.3em; width: 100%; }
+/**/
+
+.app{
+  list-style: none;
+  color: blue;
+  padding: 10px;
+  background: pink;
+  border: solid 1px white;
+  
+}
+
+.ccard{
+	margin: 0px auto;
+	padding:19px;
+	background-color:#f5f5f5;
+	border:1px solid #e3e3e3;
+	border-radius:4px;
+	width: 100%;
+	vertical-align:right;
+	position:middle;
+	
+	text-align: left;
+	/*top:10%;*/
+	/*position:relative;*/
+}
+
+.ccard img{
+	margin: 0px auto;
+	position:relative;
+	left:10%;
+	vertical-align:center;
+	text-align: left;
+
+}
+
+
+
+img.imgclass{
+max-width:600px;
+myimg:expression(onload=function(){
+this.style.width=(this.offsetWidth > 600)?"600px":"auto"});
+//overflow:hidden; 
+}
+
+img.imgclassapp{
+max-width:300px;
+max-height:400px;
+position:middle; 
+myimg:expression(onload=function(){
+this.style.width=(this.offsetWidth > 600)?"600px":"auto"});
+overflow:hidden; 
+}
+
+.well{min-height:20px;
+	padding:19px;
+	margin-bottom:20px;
+	background-color:#f5f5f5;
+	border:1px solid #e3e3e3;
+	border-radius:4px;
+	-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+	box-shadow:inset 0 1px 1px rgba(0,0,0,0.05)}
+
+
+
+.well blockquote{border-color:#ddd;border-color:rgba(0,0,0,0.15)}
+.well-lg{padding:24px;border-radius:6px}
+.well-sm{padding:9px;border-radius:3px}
+.close{float:right;font-size:21px;font-weight:bold;line-height:1;color:#000;text-shadow:0 1px 0 #fff;opacity:.2;filter:alpha(opacity=20)}
+
+div#wellapp{
+	
+	
+	padding:1px;
+	margin-bottom:0px;
+	background-color:#f5f5f5;
+	border:1px solid #e3e3e3;
+	border-radius:4px;
+	-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+	box-shadow:inset 0 1px 1px rgba(0,0,0,0.05)
+	position:absolute; 
+	top:10%; left:30%; 
+	}

@@ -1,0 +1,75 @@
+body{
+	background-image: url(../img/newcard/background.jpg); 
+}
+#card-upper{
+	position: relative;
+	margin:auto;
+}
+
+#card-photo{
+	position: absolute; top: 130px; left: 150px;
+	height: 150px;
+	z-index: 2;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+#btn-browse{
+	position: absolute; top: 290px; left: 215px;
+	margin-top: 5px;
+	z-index: 1;
+	display: block;
+}
+#btn-allsave{
+	margin-top: 20px;
+}
+#card-frame{
+	position: absolute; top: ;
+	margin-left: 15%;
+	height: 600px;
+	z-index: 0;
+}
+#form-text{
+	position: absolute;
+	margin-left: 80px;
+	margin-top: 98%;
+	z-index: 2;
+}
+#card-text{
+}
+#map-canvas{
+	height: 300px;
+}
+#iconarea{
+	position: absolute;
+	height: 55px;
+	margin-left: 40%;
+	margin-top: 89%;
+	z-index: 2;
+
+}
+#icon1{
+	visibility: hidden;
+}
+#icon2{
+	visibility: hidden;
+}
+.btn-save{
+	margin-top:5px;
+	font-size: 10px;
+
+}
+
+.icon{
+	height: 55px;
+	display: inline-block;
+}
+
+.sidebar-icon{
+	list-style-type: none;
+	list-style-position: outside;
+	display: inline-block;
+
+}
+

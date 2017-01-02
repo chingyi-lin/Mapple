@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Mapple: New Card
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+    rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"
+    rel="stylesheet">
+    <link href="css/newcard.css" rel="stylesheet">
+    <!--import jQuery 1.9.1-->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <!--import jQuery UI 1.10.3-->
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!--import spinner-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/spin.js/1.3.3/spin.min.js"></script>
+    <!--import ???
+    <script type="text/javascript" src="jquery-1.2.6.pack.js"></script>  
+    <script type="text/javascript" src="jquery.form.js"></script>
+    -->
+    <!--import firebase 1.0.2 -->
+    <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.3/firebase.js'></script>
+    <!--for set up firebase-->
+    <script src='https://cdn.firebase.com/v0/firebase.js'></script>
+   
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_MOOjkX5T5wCPC4bSRTAfMfH31D1De6w&sensor=true">
+    </script><!-- google map api -->
+
+    <!--Google Map API-->
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 8
+        };//database to remember the address, try save like the following:
+
+
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <!--End of Google Map API-->
+        <!--import newcard.js to process uploading-->
+    <script src="js/newcard.js"></script>
+    <!--import sha256.js to generate location href for photos-->
+    <script src="js/sha256.js"></script>
+    <!--import sticker.js to declare function of stickers-->
+    <script src="js/sticker.js"></script>
+    
+    <script type="text/javascript">//<!--using database in this script-->
+    var userurl=null;
+    var admin="admin";//wait to catch server data or cookie data
+    var cardID=1;
+    var CData = new Firebase('https://resplendent-fire-6545.firebaseio.com/');
+    var ncarddata = CData.child(admin);
+    var cardDB = ncarddata.child(cardID);
+    /**fake upload code block**/
+      //upload card photo//
+      function callFileSel()
+      {
+        document.formpic.uploadpic.click();
+        //setTimeout('uploadphoto()',1000);
+      }
+    </script>
+  </head>
+  
+  <body>
+    <div class="container">
+      <!--page-header-->
+      <div class="page-header">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="collapse navbar-collapse">
+          <ul class="nav nav-tabs">
+            <li><a href="index.html"><img src="img/mapple logo 1.png" height=20 px></a></li>
+            <li><a href="map.html">Map</a></li>
+            <li><a href="picture_book.html">Book</a></li>
+            <li class="active"><a href="newcard.html">Card</a></li>
+            <li><a href="#">About Us</a></li>
+            <ul class="nav nav-tabs navbar-right">
+            <li><button style="font-size: 14px" type="button" class="btn btn-default btn-lg" onclick="javascript:location.href='newcard.html'"><span class="glyphicon glyphicon-plus"></span>New</button>
+            </li>
+          </ul>
+          </ul> 
+        </div>
+        </nav>
+      </div>
+      <!--page-header END-->
+      <div class="row">
+        <div class="col-md-3">
+          <div class="panel panel-warning">
+            <div class="panel-heading">Sticker</div>
+            <div class="panel-body">
+              <a href="JavaScript:stick('img\\card_icon\\min charge icon.png')"><img class="icon" src="img\card_icon\min charge icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\wifi icon.png')"><img class="icon" src="img\card_icon\wifi icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\costed-plug icon.png')"><img class="icon" src="img\card_icon\costed-plug icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\plug icon.png')"><img class="icon" src="img\card_icon\plug icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\min charge icon.png')"><img class="icon" src="img\card_icon\min charge icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\wifi icon.png')"><img class="icon" src="img\card_icon\wifi icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\costed-plug icon.png')"><img class="icon" src="img\card_icon\costed-plug icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\plug icon.png')"><img class="icon" src="img\card_icon\plug icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\min charge icon.png')"><img class="icon" src="img\card_icon\min charge icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\wifi icon.png')"><img class="icon" src="img\card_icon\wifi icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\costed-plug icon.png')"><img class="icon" src="img\card_icon\costed-plug icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\plug icon.png')"><img class="icon" src="img\card_icon\plug icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\min charge icon.png')"><img class="icon" src="img\card_icon\min charge icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\wifi icon.png')"><img class="icon" src="img\card_icon\wifi icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\costed-plug icon.png')"><img class="icon" src="img\card_icon\costed-plug icon.png"></a>
+              <a href="JavaScript:stick('img\\card_icon\\plug icon.png')"><img class="icon" src="img\card_icon\plug icon.png"></a>
+            </div>
+            <div class="panel-heading">Layout</div>
+            <div class="panel-heading">Decorations</div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div id="card-upper">
+            <img id="card-frame" src="img\card-frame.gif">
+            <div id="spin"></div>
+            <img id="card-photo" src="img\browse-image.png">
+            <form id="form-pic" name="formpic" method="post" enctype="multipart/form-data" action="">
+              <div id="Layer1" style="position:absolute; z-index:1; visibility: hidden;">
+                <input name="uploadpic" type="file" accept="image/*" capture="camera" id="file-upload">
+              </div>
+              <a id="btn-browse" class="btn btn-primary" href="JavaScript:callFileSel()">Browse</a>
+            </form>
+            <div id="iconarea"><!--how this worked?-->
+              <a href="JavaScript:wifiSwitch(this)"><img id="icon1" class="icon" src="img\card_icon\wifi icon.png"></a>
+              <a href="JavaScript:plugSwitch(this)"><img id="icon2" class="icon" src="img\card_icon\plug icon.png"></a>
+              <a href="JavaScript:dropicon(3)"><img id="icon3" class="icon" src=""></a>
+              <a href="JavaScript:dropicon(4)"><img id="icon4" class="icon" src=""></a>
+            </div>
+          </div>
+          <div id="text-edit">
+            <form role="form" id="form-text">
+              <div class="form-group">
+                <textarea class="form-control" id="card-text" cols="51" rows="5"></textarea>
+              </div>
+              <button id="saveComment" type="submit" class="btn btn-default btn-save";>Save & Change</button>
+            </form>
+            <button id="btn-allsave" type="submit" class="btn btn-default btn-save";>Finish</button>
+            <!--
+            <form id="form-text" name="formtext" method="post" enctype="multipart/form-data" action="">
+                 <textarea name="card-text" id="card-text" cols="54" rows="5"></textarea>
+              <a id="btn-allsave"class="btn btn-default btn-save" href="cardview.html">Finish</a>
+            </form>
+          -->
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-info">
+            <div class="panel-heading">Map</div>
+            <div class="panel-body">
+              <div id="map-canvas"/></div>
+
+            </div>
+            <div class="panel-heading">Contact Info</div>
+            <div class="panel-body">
+              <form role="form">
+                <div class="form-group">
+                  <label for="storeAddress">Store Name</label>
+                  <input type="text" class="form-control" id="storeName" placeholder="Enter store name">
+                </div>
+                <div class="form-group">
+                  <label for="storeAddress">Address</label>
+                  <input type="text" class="form-control" id="storeAddress" placeholder="Enter address">
+                </div>
+                <div class="form-group">
+                  <label for="storePhone">Phone</label>
+                  <input type="text" class="form-control" id="storePhone" placeholder="Phone number">
+                </div>
+                <button type="submit" class="btn btn-default btn-save" id="saveContactInfo">Save & Change</button>
+              </form>
+            </div>
+
+            <div class="panel-heading">Note</div>
+            <div class="panel-body">
+              <form role="form">
+                <div class="form-group">
+                  <textarea class="form-control" id="note" rows="3"></textarea>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="notePrivacy"> Public
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-default btn-save" id="saveNote">Save & Change</button>
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

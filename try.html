@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>  
+<link rel="stylesheet" href="css/bookcss.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="http://jquery.com/"></script>
+<script src="http://www.malsup.com/jquery/form/"></script>
+<script type="text/javascript" src="jquery-1.2.6.pack.js"></script>  
+<script type="text/javascript" src="jquery.form.js"></script>
+
+
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>   <!--for set up firebase-->
+<script src='https://cdn.firebase.com/v0/firebase.js'></script><!--for set up firebase-->
+
+<script src="js/try.js"></script>
+<link rel='stylesheet' type='text/css' href='../css/example.css'>
+
+  </head>
+
+  <body>
+    <div id='messagesDiv'>132456789</div>
+    <input type='text' id='nameInput' placeholder='Name'>
+    <input type='text' id='messageInput' placeholder='Message'>
+    <script>
+      var myDataRef = new Firebase('https://resplendent-fire-6545.firebaseio.com/chat');
+      var myDataRef2 = new Firebase('https://resplendent-fire-6545.firebaseio.com/usertry');
+      $('#messageInput').keypress(function (e) {
+        if (e.keyCode == 13) {
+          var name = $('#nameInput').val();
+          var text = $('#messageInput').val();
+          myDataRef.set({name: name, text: text});//using set will not create new node, it will replace the old one with new one.
+          myDataRef2.push({name: name, text: text}); //using push will new a node which can be used in adding_many situation. It seens that set & push cannot be used in the same time.
+          $('#messageInput').val();
+        }
+      });
+      myDataRef.on('child_changed', function(snapshot) {
+        var message = snapshot.val();
+        displayChatMessage(message.name, message.text);
+      });
+      myDataRef2.on('child_added', function(snapshot) {
+        var message = snapshot.val();
+        displayChatMessagee(message.name, message.text);
+      });
+
+      myDataRef.on('child_removed', function(snapshot) {
+      var userName = snapshot.name(), userData = snapshot.val();
+      alert('User ' + userName + ' has left the chat.');
+      });
+
+      myDataRef2.on('child_removed', function(snapshot) {
+      var userName = snapshot.name(), userData = snapshot.val();
+      alert('User ' + userName + ' has left the chat.');
+      });
+
+      function displayChatMessage(name, text) {
+        $('<div/>').text(text).prepend($('<em/>').text(name+'i am change note: ')).appendTo($('#messagesDiv'));
+        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+      };
+      function displayChatMessagee(name, text) {
+        $('<div/>').text(text).prepend($('<em/>').text(name+'i am add node: ')).appendTo($('#messagesDiv'));
+        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+      };
+    </script>
+
+  </body>
+</html>

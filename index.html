@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+
+
+<html>
+  <head>
+    <link rel="stylesheet" href="css/landcss.css">
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+    rel="stylesheet">
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"
+    rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content="text/html"; charset="UTF-8">
+
+<!--import jQuery 1.9.1-->
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<!--import jQuery UI 1.10.3-->
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<!--import ?-->
+<script src="http://jquery.com/"></script>
+<!--import ?-->
+<script src="http://www.malsup.com/jquery/form/"></script>
+<!--import ?-->
+<script type="text/javascript" src="jquery-1.2.6.pack.js"></script>
+<!--import ?-->  
+<script type="text/javascript" src="jquery.form.js"></script>
+<!--import firebase 1.0.2 -->
+<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.2/firebase.js'></script>
+
+<script src='https://cdn.firebase.com/v0/firebase.js'></script>  <!--firebase-->
+<script src="js/land.js"></script>
+    
+     <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      dialog-form { height: 100%; margin: 0; padding: 0 }
+      form { height: 100%; margin: 0; padding: 0 }
+      
+    </style>
+    <title>Mapple</title>
+	
+    
+  </head>
+
+  <body> 
+  <img id="logo" src="https://dl.dropboxusercontent.com/u/51593126/bg_logo2.png">
+  <p id="usname" >User name </p>
+  <p id="passw" >Password </p>
+
+  <div id='messagesDiv'></div>
+    <input type='text' id='userInput' placeholder='userID'>
+    <input type='password' id='passInput' placeholder='password'>
+    <!--input id="enter" type="button" value="Enter" onclick="javascript:location.href='map.html'"-->
+    <input id="enter" type="button" value="Enter">
+    <input id="register" type="button" value="register">
+
+    <script>
+      var myDataRef = new Firebase('https://resplendent-fire-6545.firebaseio.com/');
+      var urlstring=null;
+      var userdata=null;
+      var tf=true;
+      
+      
+
+      /*/register a user
+      $('#register').click(function () {
+        
+          var user = $('#userInput').val();
+          var pw = $('#passInput').val();
+         
+          urlstring="https://resplendent-fire-6545.firebaseio.com/"+user;
+          userdata = new Firebase(urlstring);
+
+          if(tf){//if didn't exist before 
+          userdata.set({userID: user, password: pw});
+          //myDataRef.push({userID: user, password: pw, url: urlstring});
+
+          alert("you have successfully register an account: " + user+"for Mapple");
+        }     
+      });*/
+
+      //register a user
+      $('#register').click(function () {
+        
+          var user = $('#userInput').val();
+          var pw = $('#passInput').val();
+          //urlstring="https://resplendent-fire-6545.firebaseio.com/"+user;
+          userdata = myDataRef.child(user);
+          // userdata = new Firebase(urlstring);  
+         
+          userdata.on('value', function(snapshot) {
+          
+          if( snapshot.val() === null) {
+          //if didn't exist before 
+          alert('User: '+user+' does not exist!!!');         
+          alert("you have successfully register an account: " + user+"for Mapple");
+          userdata.set({userID: user, password: pw});
+          //
+          
+          tf = false;          
+          } 
+
+          else {
+            if(tf===true){alert('User: '+user+' exists before.');}
+          }
+        });
+
+      });
+
+
+   //log in 
+      $('#enter').click(function () {       
+          var user = $('#userInput').val();
+          var pw = $('#passInput').val();
+
+          userdata = myDataRef.child(user); 
+          //alert(userdata);
+          //alert(user);
+          
+          userdata.on('value', function(snapshot) {
+          if( snapshot.val() === null) {//if didn't exist before 
+          alert('User: '+user+' does not exist!!! How about create an account?');               
+          } 
+          else {
+            var passw = snapshot.val().password;
+            if(pw==passw){
+              //what to do???
+              document.location.href="map2.html";
+            }
+            else{
+              alert( 'password: '+ pw +' incorrect');
+            }
+          }
+        });
+
+      });
+   
+      /*
+      myDataRef.on('child_added', function(snapshot) {
+        var message = snapshot.val();
+        displayChatMessage(message.userID, message.password);
+      }
+      );
+      function displayChatMessage(name, text) {
+        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+      };*/
+
+    </script>
+
+  
+
+  </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+    rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"rel="stylesheet">
+    
+<!--bxslider-->      
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://bxslider.com/lib/jquery.bxslider.js"></script>
+    <link href="http://bxslider.com/lib/jquery.bxslider.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/bookcss.css">
+<!--jQuery UI-->  
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
+<!--google map api-->        
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_MOOjkX5T5wCPC4bSRTAfMfH31D1De6w&sensor=true">
+    </script>
+<!-- client js file -->      
+    <script src="js/mapFunc.js"></script>    
+    <script src="js/map2.js"></script> 
+<!-- css style --> 
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="css/map.css"> 
+    <style type="text/css">
+      
+      html { height: 100% }
+      body { height: 80%; margin: 0; padding: 0 }
+      footer{
+            height: 500 px; 
+            width: 500 px;
+            position: center;
+            left: 10%;
+            bottom: 0; 
+      }
+      #map-canvas { height: 80% }
+    </style>
+<!-- popout js -->     
+<script type="text/javascript">
+　　function showmsg(msg) {
+             $.prompt(msg);
+　　}
+　</script>
+  </head>
+<!-- end of head --> 
+
+  <body>
+<!--navigation bar-->    
+
+
+<!--google map canvas   -->
+   <div id="map-canvas"/></div>
+
+   <div id="dialog-form" title="Filter Your Cards">
+      <form>
+      <fieldset>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all">
+<!--       
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all">
+-->
+        <ul class="checkbox"> 
+          <input type="checkbox" id="cb1" value="1km" /><label for="cb1">1 km </label><br/>
+          <input type="checkbox" id="cb2" value="5km" /><label for="cb2">5 km</label><br/>
+          <input type="checkbox" id="cb3" value="10km" /><label for="cb3">10 km</label><br/>
+        </ul>
+      </fieldset>
+      </form>
+    </div>
+    <button id="search-restaurant">Search restaurant!</button>
+    
+  <div>
+  
+
+  <footer>
+    
+    <!--jQuery bxslider-->       
+      <ul class="bxslider">
+        <!--
+    <li><img src="img/book/100.jpg" height=200 px title="片場咖啡" class="slideshow">片場咖啡</li>
+        <li><img src="img/book/card.png" height=200 px title="靈感咖啡" class="slideshow">靈感咖啡</li>
+        <li><img src="img/book/book2.jpg" height=200 px title="新洞咖啡" class="slideshow">新洞咖啡</li>
+    -->
+        <li><img src="img/book/card.png" height=200 px title="靈感咖啡" class="slideshow">靈感咖啡</li>
+    <li><img src="img/book/card.png" height=200 px title="片場咖啡" class="slideshow">片場咖啡</li>
+    <li><img src="img/book/card.png" height=200 px title="新洞咖啡" class="slideshow">新洞咖啡</li>
+    <li><img src="img/book/card.png" height=200 px title="靈感咖啡" class="slideshow">靈感咖啡</li>
+    <li><img src="img/book/card.png" height=200 px title="片場咖啡" class="slideshow">片場咖啡</li>
+    <li><img src="img/book/card.png" height=200 px title="新洞咖啡" class="slideshow">新洞咖啡</li>
+    <li><img src="img/book/card.png" height=200 px title="靈感咖啡" class="slideshow">靈感咖啡</li>
+    <li><img src="img/book/card.png" height=200 px title="片場咖啡" class="slideshow">片場咖啡</li>
+    <li><img src="img/book/card.png" height=200 px title="新洞咖啡" class="slideshow">新洞咖啡</li>
+      </ul>
+
+  </footer><!-- end of footer-->   
+ </div>
+ 
+
+ </body><!-- end of body--> 
+
+</html><!-- end of html-->   

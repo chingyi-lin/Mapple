@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--http://jsbin.com/ArExAWUL/16/edit-->
+
+<html>
+<head>
+	<link rel="stylesheet" href="css/bookcss.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script src="http://jquery.com/"></script>
+	<script src="http://www.malsup.com/jquery/form/"></script>
+	<script type="text/javascript" src="jquery-1.2.6.pack.js"></script>  
+	<script type="text/javascript" src="jquery.form.js"></script>  
+	<script type="text/javascript" src="JSG.ImageUploader.js"></script> 
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="http://jquery.com/"></script>
+  <script src="http://www.malsup.com/jquery/form/"></script>
+  <script type="text/javascript" src="jquery-1.2.6.pack.js"></script>  
+  <script type="text/javascript" src="jquery.form.js"></script>
+  <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+
+
+  <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.2/firebase.js'></script>
+  <!--firebase-->
+  <script src='https://cdn.firebase.com/v0/firebase.js'></script>  <!--firebase-->
+
+	<title>Mapple: View Cards</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<!--page-header-->
+    <div class="page-header">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <ul class="nav nav-tabs">
+          <li><a href="index.html"><img src="img/mapple logo 1.png" height=20 px></a></li>
+          <li><a href="map.html">Map</a></li>
+          <li><a href="picture_book.html">Book</a></li>
+          <li class="active"><a href="cardview.html">Card</a></li>
+          <li><a href="#">About Us</a></li>
+          <ul class="nav nav-tabs navbar-right">
+          <li><button style="font-size: 14px" type="button" class="btn btn-default btn-lg" onclick="javascript:location.href='picture_book.html'" align="right"><span class="glyphicon glyphicon-folder-open"></span>. my book</button></li>
+        </ul> 
+      </nav>
+    </div>
+	<div class="col-md-4">
+		<div class="well sidebar-nav" id="tabs">
+      <ul class="nav" id="list1">
+        <li>你的卡片</li>
+         <script type="text/javascript">
+        
+        var CData = new Firebase('https://resplendent-fire-6545.firebaseio.com/');
+        var ncarddata = CData.child('admin');//change admin to sth else    
+        var bdata=ncarddata.child('cards');
+        
+        var i=1;
+        bdata.on('child_added', function(snapshot) {
+        var word=snapshot.val();
+        var store=word.storename;
+        if(store){
+        $( "#list1" ).append( "<li class=\"active\"><a href=\"#tab"+i+"\">"+store+"</a></li>" );}
+        else{
+          $( "#list1" ).append( "<li class=\"active\"><a href=\"#tab"+i+"\">your cafe"+i+"</a></li>" );
+        }
+        
+        i++;
+        }); 
+        
+        
+       
+        </script>
+
+        <!--li>大安區</li>
+        <li class="active"><a href="cardview.html">靈感咖啡</a></li>
+        <li><a href="#">片場咖啡</a></li>
+        <li><a href="#">新洞咖啡</a></li>
+        <li>文山區</li>
+        <li><a href="#">等一個人咖啡館</a></li>
+        <li><a href="#">兔子咖啡</a></li>
+        <li><a href="#">森林咖啡</a></li>
+        <li>信義區</li>
+        <li><a href="#">烘培者咖啡</a></li>
+        <li><a href="#">深度咖啡</a></li-->
+      </ul>
+    </div><!--/.well -->
+
+
+	</div>
+
+<!--若是mobile的話，註解掉下面的div-->
+	<div class="well ccard" id="well">
+    <script>
+        
+        var CData = new Firebase('https://resplendent-fire-6545.firebaseio.com/');
+        var ncarddata = CData.child('admin');//change admin to sth else    
+        var temp=ncarddata.child('cards');
+        //var bdata=temp.child('card2');
+        var j=1;
+
+
+        temp.on('child_added', function(snapshot) {
+        var word=snapshot.val();
+        var store=word.storename;
+        var picture=word.image;
+        
+        if(store&&picture){
+        $( "#well" ).append( "<div id=\"tab"+j+"\"><ul><h3>"+store+"</h3></ul>"+ "<a href=\"#\"><img src=\""+picture+"\" class =\"imgclass \" alt=\"your cafe image\" height=600 px></a></div>");  
+        j++;
+        }
+        else if(store){
+        $( "#well" ).append( "<div id=\"tab"+j+"\"><ul><h3>"+store+"</h3></ul>"+ "<a href=\"#\"><img src=\"img/book/card.png\" class =\"imgclass \" alt=\"your cafe image\" height=600 px></a></div>");  
+        j++;
+        }
+        else if(picture){
+          $( "#well" ).append( "<div id=\"tab"+j+"\"><ul><h3>your cafe name"+j+"</h3></ul>"+ "<a href=\"#\"><img src=\""+picture+"\" class =\"imgclass \" alt=\"your cafe image\" height=600 px></a></div>");  
+        j++;
+        }
+        else{
+          $( "#well" ).append( "<div id=\"tab"+j+"\"><ul><h3>your cafe"+j+"</h3></ul>"+ "<a href=\"#\"><img src=\"img/book/card.png\" class =\"imgclass \" alt=\"your cafe\" height=600 px></a></div>");  
+        j++;
+        }
+
+        }); 
+
+
+
+        for(var u=0;u<=10;u++){  
+        var tempword=card+u; 
+        var tempp=temp.child(tempword);
+        document.write(tempword);
+        }
+
+
+        </script>
+
+        <script  type="text/javascript">
+        $('#tabs')
+        .tabs()
+        .addClass('ui-tabs-vertical ui-helper-clearfix');
+        </script>
+
+  	<!--ul><h3>片場咖啡</h3></ul>
+  	<a href="#"><img src="img/book/card.png" alt="your book" height=600 px></a>
+    
+    <div id="a">
+        Content of A
+    </div-->
+
+	</div>
+
+  <!--div class="col-md-4">
+	</div-->
+
+
+</div>
